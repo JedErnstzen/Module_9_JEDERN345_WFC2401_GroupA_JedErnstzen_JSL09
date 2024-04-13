@@ -33,23 +33,21 @@ function displayDogecoinData() {
       const currentPrice = data.market_data.current_price.eur; // Display in Euros
       const highPrice = data.market_data.high_24h.eur; // Display in Euros
       const lowPrice = data.market_data.low_24h.eur; // Display in Euros
+      
       document.getElementById("crypto-top").innerHTML = `
-        <img src=${data.image.small} />
-        <span>${data.name}</span>
-      `;
-      // Clear previous content and display new data
-      document.getElementById("crypto").innerHTML = "";
-      document.getElementById("crypto").innerHTML = `
-        <p>🎯: € ${currentPrice}</p>
-        <p>👆: € ${highPrice}</p>
-        <p>👇: € ${lowPrice}</p>
-      `;
-    })
-    .catch(error => {
-      // Log and handle errors while fetching Dogecoin data
-      console.error("Error fetching Dogecoin data:", error.message);
-    });
-}
+          <img src=${data.image.small} />
+          <span>${data.name}</span>
+        `;
+        document.getElementById("crypto").innerHTML += `
+          <p>🎯: €${currentPrice}</p>
+          <p>👆: €${highPrice}</p>
+          <p>👇: €${lowPrice}</p>
+        `;
+      })
+      .catch(error => {
+        console.error("Error fetching Dogecoin data:", error);
+      });
+  }
 
 // Function to update the current time every second
 function getCurrentTime() {
